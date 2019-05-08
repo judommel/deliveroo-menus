@@ -6,9 +6,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f5f5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+header {
+  border-bottom: 1px solid grey;
+  height: 50px;
+}
+
+.logo {
+  height: 30px;
+}
+
+.menu-card {
+  width: 356px;
+  height: 132px;
+  background-color: #ffffff;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  overflow: auto;
+}
+
+.menu-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-pic {
+  width: 96px;
+  height: 96px;
+  border-radius: 3px;
 }
