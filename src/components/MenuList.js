@@ -7,9 +7,9 @@ function MenuList(props) {
   let list = meal.map((menu, index) => <MenuCard menu={menu} />);
 
   return (
-    <div>
+    <div className="menu-list" id={title}>
       <h2>{title}</h2>
-      <div className="menu-list"> {list}</div>
+      <div className="menu-items"> {list}</div>
     </div>
   );
 }

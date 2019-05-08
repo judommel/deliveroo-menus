@@ -1,8 +1,6 @@
 import React from "react";
 
-function Header(props) {
-  const { name, description, pic } = props;
-
+function Header() {
   return (
     <header>
       <div className="container-content">

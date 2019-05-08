@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Title from "./Title";
+import Nav from "./Nav";
 import Content from "./Content";
 import Cart from "./Cart";
 import axios from "axios";
@@ -30,6 +31,7 @@ class App extends React.Component {
           description={this.state.data.restaurant.description}
           pic={this.state.data.restaurant.picture}
         />
+        <Nav mealList={this.state.data.menu} />
         <div>
           <div className="container-content main">
             <Content mealList={this.state.data.menu} />

@@ -15,6 +15,28 @@ header {
   background-color: #ffffff;
 }
 
+h2 {
+  margin: 0px 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #5acdbd;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  text-decoration: none;
+  margin: 0px 0px;
+  padding: 10px;
+}
+
+.container-nav {
+  background-color: #ffffff;
+}
+
 .logo {
   margin: 10px 0px;
   height: 30px;
@@ -51,6 +73,7 @@ header {
 
 .main {
   display: flex;
+  position: relative;
 }
 
 .cart {
@@ -61,25 +84,35 @@ header {
 
 .menu-list {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 25px 25px;
+}
+
+.menu-items {
+  display: flex;
   flex-wrap: wrap;
 }
 
 .menu-card {
+  position: relative;
   padding: 10px;
   width: 356px;
-  height: 132px;
+  height: auto;
   background-color: #ffffff;
   font-size: 14px;
   line-height: 19px;
   display: flex;
+  justify-items: space-around;
   overflow: auto;
   margin: 10px 10px;
 }
 
-.menu-card p {
-  padding: none;
-  margin: none;
+.menu-description {
+  overflow: auto;
   color: #9fa2a2;
+  height: 40px;
+  margin: 0px 0px;
 }
 
 .menu-card:hover {
@@ -90,12 +123,21 @@ header {
 .menu-info {
   display: flex;
   flex-direction: column;
+  margin: 5px;
+  width: 65%;
 }
 
 .menu-pic {
+  position: absolute;
+  right: 20px;
+  top: 20px;
   width: 96px;
   height: 96px;
   border-radius: 3px;
   background-size: cover;
   object-fit: cover;
+}
+
+.popular {
+  color: #f17f30;
 }
