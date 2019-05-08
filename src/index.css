@@ -12,13 +12,60 @@ body {
 header {
   border-bottom: 1px solid grey;
   height: 50px;
+  background-color: #ffffff;
 }
 
 .logo {
+  margin: 10px 0px;
   height: 30px;
 }
 
+.title {
+  border-bottom: 1px solid grey;
+  background-color: #ffffff;
+  height: 240px;
+}
+
+.container-title {
+  display: flex;
+  width: 1200px;
+  margin: auto;
+}
+
+.title-content {
+  padding: 20px;
+}
+
+.title-pic {
+  width: 370px;
+  height: 160px;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.container-content {
+  width: 1200px;
+  margin: auto;
+}
+
+.main {
+  display: flex;
+}
+
+.cart {
+  width: 370px;
+  height: 200px;
+  background-color: #ffffff;
+}
+
+.menu-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .menu-card {
+  padding: 10px;
   width: 356px;
   height: 132px;
   background-color: #ffffff;
@@ -26,6 +73,18 @@ header {
   line-height: 19px;
   display: flex;
   overflow: auto;
+  margin: 10px 10px;
+}
+
+.menu-card p {
+  padding: none;
+  margin: none;
+  color: #9fa2a2;
+}
+
+.menu-card:hover {
+  box-shadow: 0px 4px 6px grey;
+  cursor: pointer;
 }
 
 .menu-info {
@@ -37,4 +96,6 @@ header {
   width: 96px;
   height: 96px;
   border-radius: 3px;
+  background-size: cover;
+  object-fit: cover;
 }

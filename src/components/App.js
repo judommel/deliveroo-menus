@@ -1,14 +1,15 @@
 import React from "react";
 import Header from "./Header";
-import MenuList from "./MenuList";
-import MenuCard from "./MenuCard";
+import Title from "./Title";
 import Content from "./Content";
+import Cart from "./Cart";
 import axios from "axios";
 
 class App extends React.Component {
   state = {
     isLoading: true,
-    data: null
+    data: null,
+    cart: []
   };
 
   render() {
@@ -24,14 +25,22 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <div>
-          <Content mealList={this.state.data} />
-          {/* <MenuList title="Brunch" meal={this.state.data.Brunchs} />
-        <MenuList
-          title="Petit déjeuner"
-          meal={this.state.data["Petit déjeuner"]}
+        <Title
+          name={this.state.data.restaurant.name}
+          description={this.state.data.restaurant.description}
+          pic={this.state.data.restaurant.picture}
         />
-        <MenuList title="Salades" meal={this.state.data.Salades} /> */}
+        <div>
+          <div className="container-content main">
+            <Content mealList={this.state.data.menu} />
+            <Cart
+              cartContent={
+                this.state.cart.length === 0
+                  ? "Votre panier est vide"
+                  : this.state.cart
+              }
+            />
+          </div>
         </div>
       </div>
     );
@@ -39,7 +48,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     await axios.get("https://deliveroo-api.now.sh/menu").then(response => {
-      this.setState({ data: response.data.menu, isLoading: false });
+      this.setState({ data: response.data, isLoading: false });
     });
   }
 }
