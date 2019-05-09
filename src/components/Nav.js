@@ -5,24 +5,24 @@ function Nav(props) {
 
   let keys = Object.keys(mealList);
 
-  let list = keys.slice(0, 4).map(meal => (
-    <li>
+  let list = keys.slice(0, 4).map((meal, index) => (
+    <li key={index}>
       <a href={"#" + meal}>{meal}</a>
     </li>
   ));
 
-  let bList = keys.slice(4).map(meal => (
-    <li>
-      <a href={"#" + meal}>{meal}</a>
-    </li>
-  ));
+  // let bList = keys.slice(4).map(meal => (
+  //   <li>
+  //     <a href={"#" + meal}>{meal}</a>
+  //   </li>
+  // ));
 
   return (
     <div className="container-nav">
-      <ul className="nav">
+      <ul className="nav container-content">
         {list}
         <li>
-          <a href="#">Plus</a>
+          <a href="#">Plus +</a>
         </li>
       </ul>
     </div>

@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #ebebeb;
   height: 50px;
   background-color: #ffffff;
 }
@@ -29,12 +29,14 @@ a {
   list-style: none;
   justify-content: space-around;
   text-decoration: none;
-  margin: 0px 0px;
   padding: 10px;
+  padding-left: 130px;
+  width: 768px;
 }
 
 .container-nav {
   background-color: #ffffff;
+  width: 100%;
 }
 
 .logo {
@@ -43,7 +45,7 @@ a {
 }
 
 .title {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #ebebeb;
   background-color: #ffffff;
   height: 240px;
 }
@@ -59,6 +61,7 @@ a {
 }
 
 .title-pic {
+  padding: 10px;
   width: 370px;
   height: 160px;
   background-size: cover;
@@ -67,19 +70,55 @@ a {
 }
 
 .container-content {
-  width: 1200px;
-  margin: auto;
+  width: 768px;
+  margin: 0px 0px;
+  flex: 2;
 }
 
 .main {
   display: flex;
   position: relative;
+  width: 1200px;
+  margin: auto;
+}
+
+.cart-wrapper {
+  position: relative;
+  flex: 1;
 }
 
 .cart {
   width: 370px;
   height: 200px;
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.cart-button {
+  margin-top: 10px;
+  width: 354px;
+  height: 48px;
+  background-color: #bac2c3;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.cart-button:hover {
+  cursor: pointer;
+}
+
+.cart-content {
+  margin: auto;
+}
+
+.cart-items {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
 }
 
 .menu-list {
@@ -92,12 +131,13 @@ a {
 .menu-items {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .menu-card {
   position: relative;
   padding: 10px;
-  width: 356px;
+  width: 335px;
   height: auto;
   background-color: #ffffff;
   font-size: 14px;
@@ -105,7 +145,7 @@ a {
   display: flex;
   justify-items: space-around;
   overflow: auto;
-  margin: 10px 10px;
+  margin: 10px 0px;
 }
 
 .menu-description {
@@ -140,4 +180,13 @@ a {
 
 .popular {
   color: #f17f30;
+}
+
+@media (max-width: 1200px) {
+  .container-title,
+  .container-nav,
+  .container-content,
+  .main {
+    width: auto;
+  }
 }

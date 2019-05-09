@@ -2,9 +2,11 @@ import React from "react";
 import MenuCard from "./MenuCard";
 
 function MenuList(props) {
-  const { meal, title } = props;
+  const { meal, title, onSelect } = props;
 
-  let list = meal.map((menu, index) => <MenuCard menu={menu} />);
+  let list = meal.map((menu, index) => (
+    <MenuCard key={index} menu={menu} onSelect={e => onSelect(e)} />
+  ));
 
   return (
     <div className="menu-list" id={title}>

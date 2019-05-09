@@ -1,20 +1,38 @@
 import React from "react";
 
 function MenuCard(props) {
-  const { menu } = props;
+  const { menu, onSelect } = props;
 
   return (
-    <div className="menu-card">
+    <div
+      id={menu.id}
+      className="menu-card"
+      onClick={e => {
+        onSelect(e.currentTarget.id);
+      }}
+    >
       <div className="menu-info">
         {" "}
-        <h3>{menu.title}</h3>
+        <h3 value="ok">{menu.title}</h3>
         <div className="menu-description">
-          <div>{menu.description}</div>
+          <span>
+            {menu.description.length > 54
+              ? menu.description.slice(0, 55) + "..."
+              : menu.description}
+          </span>
+          <span>
+            {menu.description ? " - " + menu.price + " €" : menu.price + " €"}
+          </span>
         </div>
-        <div>{menu.price + " €"}</div>
         <div>
-          {" "}
-          {menu.popular && <div className="popular"> ⭐️ Populaire</div>}
+          {menu.popular && (
+            <div className="popular">
+              <span role="img" aria-label="star">
+                ⭐️{" "}
+              </span>{" "}
+              Populaire
+            </div>
+          )}
         </div>
       </div>
       {menu.picture && (
