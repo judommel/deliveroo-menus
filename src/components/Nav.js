@@ -22,7 +22,7 @@ function Nav(props) {
       <ul className="nav container-content">
         {list}
         <li>
-          <a href="#">Plus +</a>
+          <a href="#Brunchs">Plus +</a>
         </li>
       </ul>
     </div>

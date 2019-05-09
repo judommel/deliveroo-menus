@@ -5,11 +5,11 @@ function CartItems(props) {
 
   return (
     <li className="cart-items">
-      <button id={id} onClick={e => del(e.target.id)}>
+      <button className="cart-quantity" id={id} onClick={e => del(e.target.id)}>
         -
       </button>
       {quantity}
-      <button id={id} onClick={e => add(e.target.id)}>
+      <button className="cart-quantity" id={id} onClick={e => add(e.target.id)}>
         +
       </button>
       {item}

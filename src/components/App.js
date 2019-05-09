@@ -20,24 +20,16 @@ class App extends React.Component {
 
     let newCart = [];
 
-    let keys = Object.keys(this.state.data.menu);
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (e === this.state.cart[i].id) {
+        item = { ...this.state.cart[i] };
+        item.quantity = item.quantity + 1;
 
-    let mealArray = keys.map(key => this.state.data.menu[key]);
+        newCart = [...this.state.cart];
 
-    for (let i = 0; i < mealArray.length; i++) {
-      for (let j = 0; j < mealArray[i].length; j++) {
-        if (e === mealArray[i][j].id) {
-          item = mealArray[i][j];
-          item.quantity = item.quantity + 1;
-
-          newCart = [...this.state.cart];
-
-          // newCart[i].splice(j, 1, item);
-        }
+        newCart.splice(i, 1, item);
       }
     }
-    // console.log(item);
-    console.log(newCart);
 
     this.setState({ cart: newCart });
   };
@@ -47,20 +39,16 @@ class App extends React.Component {
 
     let newCart = [];
 
-    let keys = Object.keys(this.state.data.menu);
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (e === this.state.cart[i].id) {
+        item = { ...this.state.cart[i] };
+        item.quantity = item.quantity - 1;
 
-    let mealArray = keys.map(key => this.state.data.menu[key]);
+        newCart = [...this.state.cart];
 
-    for (let i = 0; i < mealArray.length; i++) {
-      for (let j = 0; j < mealArray[i].length; j++) {
-        if (e === mealArray[i][j].id) {
-          item = mealArray[i][j];
-          item.quantity = item.quantity - 1;
+        newCart.splice(i, 1, item);
 
-          newCart = [...this.state.cart];
-
-          // newCart[i].splice(j, 1, item);
-        }
+        console.log(newCart);
       }
     }
 
@@ -68,16 +56,18 @@ class App extends React.Component {
   };
 
   cartRender = () => {
-    let cartArray = this.state.cart.map(prod => (
-      <CartItems
-        id={prod.id}
-        add={e => this.add(e)}
-        del={e => this.del(e)}
-        price={prod.price}
-        quantity={prod.quantity}
-        item={prod.title.slice(0, 15)}
-      />
-    ));
+    let cartArray = this.state.cart
+      .filter(prod => prod.quantity > 0)
+      .map(prod => (
+        <CartItems
+          id={prod.id}
+          add={e => this.add(e)}
+          del={e => this.del(e)}
+          price={(prod.price * prod.quantity).toFixed(2)}
+          quantity={prod.quantity}
+          item={prod.title.slice(0, 15)}
+        />
+      ));
 
     let total = 0;
 
@@ -85,12 +75,16 @@ class App extends React.Component {
       total += this.state.cart[i].price * this.state.cart[i].quantity;
     }
 
-    if (this.state.cart.length === 0) {
+    if (this.state.cart.length === 0 || total === 0) {
       return "Votre panier est vide";
     }
+
+    total = total.toFixed(2);
+
     return (
       <div>
         <div>{cartArray}</div>
+        <div>---------------------</div>
         <div>{"Total : " + total + " €"}</div>
       </div>
     );
@@ -106,7 +100,7 @@ class App extends React.Component {
     for (let i = 0; i < mealArray.length; i++) {
       for (let j = 0; j < mealArray[i].length; j++) {
         if (e === mealArray[i][j].id) {
-          item = mealArray[i][j];
+          item = { ...mealArray[i][j] };
           item.quantity = 1;
         }
       }
@@ -114,14 +108,29 @@ class App extends React.Component {
 
     let newCart = [...this.state.cart];
 
-    newCart.push(item);
+    let found = false;
+
+    for (let i = 0; i < newCart.length; i++) {
+      if (newCart[i].id === e) {
+        item = { ...newCart[i] };
+        item.quantity = item.quantity + 1;
+
+        newCart.splice(i, 1, item);
+
+        found = true;
+      }
+    }
+
+    if (found === false) {
+      newCart.push(item);
+    }
 
     this.setState({ cart: newCart });
   };
 
   handleScroll = e => {
     console.log("ok");
-    if (window.scrollY > 150) {
+    if (e.target.scrollTop > 150) {
       console.log("scrolled");
       this.setState({ scrolled: true });
     }
@@ -139,7 +148,12 @@ class App extends React.Component {
 
     return (
       <div>
-        <div onScroll={e => this.handleScroll(e)}>
+        <div
+          onScroll={e => {
+            // this.handleScroll(e);
+            console.log(e);
+          }}
+        >
           <Header />
           <Title
             name={this.state.data.restaurant.name}
