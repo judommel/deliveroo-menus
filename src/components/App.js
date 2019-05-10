@@ -5,7 +5,6 @@ import Nav from "./Nav";
 import Content from "./Content";
 import Cart from "./Cart";
 import axios from "axios";
-import CartItems from "./CardItems";
 
 class App extends React.Component {
   state = {

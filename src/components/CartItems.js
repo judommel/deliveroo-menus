@@ -12,20 +12,19 @@ function CartItems(props) {
           id={id}
           onClick={e => del(e.target.id)}
           className="quant-icon"
+          alt="- icon"
           src={minus}
         />
         {" " + quantity + " "}
         <img
           className="quant-icon"
+          alt="+ icon"
           src={plus}
           id={id}
           onClick={e => add(e.target.id)}
         />
       </div>{" "}
-      <div className="item">
-        {item}
-        {/* {item.length > 15 ? item.slice(0, 5) + "..." : item} */}
-      </div>
+      <div className="item">{item}</div>
       <div className="item">{price + " €"}</div>
     </li>
   );
