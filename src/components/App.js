@@ -18,18 +18,15 @@ class App extends React.Component {
   add = e => {
     let item;
 
-    let newCart = [];
+    let newCart = [...this.state.cart];
 
-    for (let i = 0; i < this.state.cart.length; i++) {
-      if (e === this.state.cart[i].id) {
-        item = { ...this.state.cart[i] };
-        item.quantity = item.quantity + 1;
+    let index = newCart.map(item => item.id).indexOf(e);
 
-        newCart = [...this.state.cart];
+    item = { ...this.state.cart[index] };
 
-        newCart.splice(i, 1, item);
-      }
-    }
+    item.quantity = item.quantity + 1;
+
+    newCart.splice(index, 1, item);
 
     this.setState({ cart: newCart });
   };
@@ -37,57 +34,16 @@ class App extends React.Component {
   del = e => {
     let item;
 
-    let newCart = [];
+    let newCart = [...this.state.cart];
 
-    for (let i = 0; i < this.state.cart.length; i++) {
-      if (e === this.state.cart[i].id) {
-        item = { ...this.state.cart[i] };
-        item.quantity = item.quantity - 1;
+    let index = newCart.map(item => item.id).indexOf(e);
 
-        newCart = [...this.state.cart];
+    item = { ...this.state.cart[index] };
+    item.quantity = item.quantity - 1;
 
-        newCart.splice(i, 1, item);
-
-        console.log(newCart);
-      }
-    }
+    newCart.splice(index, 1, item);
 
     this.setState({ cart: newCart });
-  };
-
-  cartRender = () => {
-    let cartArray = this.state.cart
-      .filter(prod => prod.quantity > 0)
-      .map(prod => (
-        <CartItems
-          id={prod.id}
-          add={e => this.add(e)}
-          del={e => this.del(e)}
-          price={(prod.price * prod.quantity).toFixed(2)}
-          quantity={prod.quantity}
-          item={prod.title.slice(0, 15)}
-        />
-      ));
-
-    let total = 0;
-
-    for (let i = 0; i < this.state.cart.length; i++) {
-      total += this.state.cart[i].price * this.state.cart[i].quantity;
-    }
-
-    if (this.state.cart.length === 0 || total === 0) {
-      return "Votre panier est vide";
-    }
-
-    total = total.toFixed(2);
-
-    return (
-      <div>
-        <div>{cartArray}</div>
-        <div>---------------------</div>
-        <div>{"Total : " + total + " €"}</div>
-      </div>
-    );
   };
 
   selectItem = e => {
@@ -110,15 +66,15 @@ class App extends React.Component {
 
     let found = false;
 
-    for (let i = 0; i < newCart.length; i++) {
-      if (newCart[i].id === e) {
-        item = { ...newCart[i] };
-        item.quantity = item.quantity + 1;
+    let index = newCart.map(item => item.id).indexOf(e);
 
-        newCart.splice(i, 1, item);
+    if (index !== -1) {
+      item = { ...newCart[index] };
+      item.quantity = item.quantity + 1;
 
-        found = true;
-      }
+      newCart.splice(index, 1, item);
+
+      found = true;
     }
 
     if (found === false) {
@@ -129,10 +85,14 @@ class App extends React.Component {
   };
 
   handleScroll = e => {
-    console.log("ok");
-    if (e.target.scrollTop > 150) {
+    console.log("ok", window.scrollY);
+    if (window.scrollY > 292) {
       console.log("scrolled");
       this.setState({ scrolled: true });
+      console.log(this.state.scrolled);
+    } else {
+      this.setState({ scrolled: false });
+      console.log(this.state.scrolled);
     }
   };
 
@@ -148,19 +108,17 @@ class App extends React.Component {
 
     return (
       <div>
-        <div
-          onScroll={e => {
-            // this.handleScroll(e);
-            console.log(e);
-          }}
-        >
+        <div>
           <Header />
           <Title
             name={this.state.data.restaurant.name}
             description={this.state.data.restaurant.description}
             pic={this.state.data.restaurant.picture}
           />
-          <Nav mealList={this.state.data.menu} />
+          <Nav
+            pos={this.state.scrolled ? "fixedNav" : "container-nav"}
+            mealList={this.state.data.menu}
+          />
           <div className="main">
             <div>
               <Content
@@ -173,8 +131,10 @@ class App extends React.Component {
             </div>
             <div className="cart-wrapper">
               <Cart
-                style={{ position: this.state.scrolled ? "absolute" : "fixed" }}
-                cartContent={this.cartRender()}
+                add={e => this.add(e)}
+                del={e => this.del(e)}
+                cart={this.state.cart}
+                pos={this.state.scrolled ? "fixedCart" : "cart"}
               />
             </div>
           </div>
@@ -187,6 +147,7 @@ class App extends React.Component {
     await axios.get("https://deliveroo-api.now.sh/menu").then(response => {
       this.setState({ data: response.data, isLoading: false });
     });
+    window.addEventListener("scroll", this.handleScroll);
   }
 }
 

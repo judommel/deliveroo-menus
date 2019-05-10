@@ -1,7 +1,7 @@
 import React from "react";
 
 function Nav(props) {
-  const { mealList } = props;
+  const { mealList, pos } = props;
 
   let keys = Object.keys(mealList);
 
@@ -18,7 +18,7 @@ function Nav(props) {
   // ));
 
   return (
-    <div className="container-nav">
+    <div className={pos}>
       <ul className="nav container-content">
         {list}
         <li>
