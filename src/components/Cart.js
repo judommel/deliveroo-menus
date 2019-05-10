@@ -30,7 +30,7 @@ function Cart(props) {
     }
 
     if (cart.length === 0 || total === 0) {
-      return "Votre panier est vide";
+      return <div className="empty-cart">Votre panier est vide</div>;
     }
 
     total = total.toFixed(2);
@@ -47,10 +47,7 @@ function Cart(props) {
     <div className={pos}>
       <button className="cart-button">Valider Mon panier</button>
 
-      <div className="cart-content">
-        {cartRender()}
-        {/* {cartContent} */}
-      </div>
+      <div className="cart-content">{cartRender()}</div>
     </div>
   );
 }

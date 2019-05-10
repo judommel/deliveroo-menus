@@ -85,14 +85,10 @@ class App extends React.Component {
   };
 
   handleScroll = e => {
-    console.log("ok", window.scrollY);
     if (window.scrollY > 292) {
-      console.log("scrolled");
       this.setState({ scrolled: true });
-      console.log(this.state.scrolled);
     } else {
       this.setState({ scrolled: false });
-      console.log(this.state.scrolled);
     }
   };
 
@@ -101,7 +97,7 @@ class App extends React.Component {
       return (
         <div>
           <Header />
-          <div>Loading...</div>
+          <div className="loading">Loading...</div>
         </div>
       );
     }

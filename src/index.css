@@ -24,10 +24,15 @@ h2 {
 h3 {
   font-size: 16px;
   line-height: 22px;
+  font-weight: 200;
 }
 
-a {
+.main-nav a {
   text-decoration: none;
+  color: #5acdbd;
+}
+
+.loading {
   color: #5acdbd;
 }
 
@@ -44,14 +49,50 @@ a {
 .container-nav {
   background-color: #ffffff;
   width: 100%;
+  position: relative;
 }
+
 .fixedNav {
   background-color: #ffffff;
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0px;
   right: 10px;
   z-index: 1;
+}
+
+.plus-nav {
+  padding: 0px 10px;
+  border: 1px solid #5acdbd;
+  border-radius: 6px;
+}
+
+.plus-nav:hover {
+  cursor: pointer;
+}
+
+.vertical-nav {
+  list-style: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  position: relative;
+  right: 0px;
+}
+
+.vertical-nav li {
+  margin: 0px;
+  padding: 7px;
+}
+
+.vertical-nav a {
+  background-color: #ffffff;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  color: #5acdbd;
+  border: 1px solid #5acdbd;
 }
 
 .logo {
@@ -137,12 +178,18 @@ a {
   width: 354px;
   height: 48px;
   background-color: #5acdbd;
-  border-radius: 3px;
+  border-radius: 6px;
   font-size: 16px;
 }
 
 .cart-button:hover {
   cursor: pointer;
+}
+
+.empty-cart {
+  height: 40px;
+  vertical-align: center;
+  padding: 50% 0%;
 }
 
 .quant-icon {
