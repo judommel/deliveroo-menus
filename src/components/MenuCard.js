@@ -27,10 +27,8 @@ function MenuCard(props) {
         <div>
           {menu.popular && (
             <div className="popular">
-              <span role="img" aria-label="star">
-                ⭐️{" "}
-              </span>{" "}
-              Populaire
+              <i className="fas fa-star" />
+              <span> Populaire</span>
             </div>
           )}
         </div>

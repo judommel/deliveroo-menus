@@ -1,5 +1,7 @@
 @import "./fonts/stylesheet.css";
 
+/* GENERAL */
+
 body {
   margin: 0;
   padding: 0;
@@ -7,12 +9,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f5f5;
-}
-
-header {
-  border-bottom: 1px solid #ebebeb;
-  height: 50px;
-  background-color: #ffffff;
 }
 
 h2 {
@@ -25,74 +21,19 @@ h3 {
   font-size: 16px;
   line-height: 22px;
   font-weight: 200;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #5acdbd;
+  margin: 8px 0px;
 }
 
 .loading {
   color: #5acdbd;
 }
 
-.nav {
-  display: flex;
-  list-style: none;
-  justify-content: space-around;
-  text-decoration: none;
-  padding: 10px;
-  padding-left: 130px;
-  width: 768px;
-}
+/* HEADER */
 
-.container-nav {
+header {
+  border-bottom: 1px solid #ebebeb;
+  height: 50px;
   background-color: #ffffff;
-  width: 100%;
-  position: relative;
-}
-
-.fixedNav {
-  background-color: #ffffff;
-  width: 100%;
-  position: fixed;
-  top: 0px;
-  right: 10px;
-  z-index: 1;
-}
-
-.plus-nav {
-  padding: 0px 10px;
-  border: 1px solid #5acdbd;
-  border-radius: 6px;
-}
-
-.plus-nav:hover {
-  cursor: pointer;
-}
-
-.vertical-nav {
-  list-style: none;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  position: relative;
-  right: 0px;
-}
-
-.vertical-nav li {
-  margin: 0px;
-  padding: 7px;
-}
-
-.vertical-nav a {
-  background-color: #ffffff;
-  text-decoration: none;
-  color: black;
-  padding: 5px;
-  color: #5acdbd;
-  border: 1px solid #5acdbd;
 }
 
 .logo {
@@ -125,6 +66,96 @@ h3 {
   border-radius: 3px;
 }
 
+/* NAV */
+
+.main-nav a {
+  text-decoration: none;
+  color: #5acdbd;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.main-nav a:hover {
+  color: #ffffff;
+  background-color: #5acdbd;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  text-decoration: none;
+  width: 768px;
+  font-size: 14px;
+  flex: 2;
+}
+
+.nav-wrapper {
+  display: flex;
+  position: sticky;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  margin: auto;
+  height: 48px;
+}
+
+.container-nav {
+  background-color: #ffffff;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  z-index: 4;
+}
+
+.plus-nav {
+  margin-top: 10px;
+  color: #5acdbd;
+  font-size: 14px;
+  list-style: none;
+}
+
+.plus {
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+.plus:hover {
+  cursor: pointer;
+  background-color: #5acdbd;
+  color: #ffffff;
+}
+
+.vertical-nav {
+  list-style: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  position: absolute;
+  padding: 10px;
+  margin: 0px 0px;
+  z-index: 3;
+}
+
+.vertical-nav li {
+  margin: 0px;
+  padding: 7px;
+}
+
+.vertical-nav a {
+  background-color: #ffffff;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  color: #5acdbd;
+  border: 1px solid #5acdbd;
+}
+
 .container-content {
   width: 768px;
   margin: 0px 0px;
@@ -136,16 +167,17 @@ h3 {
   position: relative;
   width: 1200px;
   margin: auto;
+  justify-content: space-between;
 }
 
 .cart-wrapper {
-  position: relative;
   flex: 1;
 }
 
 .cart {
   width: 370px;
-  margin-top: 10px;
+  margin: 0px 0px;
+  margin-left: 35px;
   height: auto;
   background-color: #ffffff;
   display: flex;
@@ -153,22 +185,6 @@ h3 {
   align-content: center;
   text-align: center;
   align-items: center;
-  padding: 10px;
-  box-shadow: 0px 4px 6px grey;
-}
-
-.fixedCart {
-  width: 370px;
-  height: auto;
-  position: sticky;
-  top: 50px;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  text-align: center;
-  align-items: center;
-  z-index: 2;
   padding: 10px;
   box-shadow: 0px 4px 6px grey;
 }
@@ -184,6 +200,15 @@ h3 {
 
 .cart-button:hover {
   cursor: pointer;
+}
+
+.empty-cart-button {
+  margin-top: 10px;
+  width: 354px;
+  height: 48px;
+  background-color: #9fa2a2;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
 .empty-cart {
@@ -233,7 +258,8 @@ h3 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 25px 25px;
+  margin: 25px 0px;
+  margin-right: 25px;
 }
 
 .menu-items {

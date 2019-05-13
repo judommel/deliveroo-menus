@@ -3,7 +3,7 @@ import CartItems from "./CartItems";
 import CartTotal from "./CartTotal";
 
 function Cart(props) {
-  const { cart, pos, add, del } = props;
+  const { cart, pos, add, del, cartbutton } = props;
 
   const cartRender = () => {
     let cartArray = cart
@@ -45,7 +45,7 @@ function Cart(props) {
 
   return (
     <div className={pos}>
-      <button className="cart-button">Valider Mon panier</button>
+      <button className={cartbutton}>Valider Mon panier</button>
 
       <div className="cart-content">{cartRender()}</div>
     </div>

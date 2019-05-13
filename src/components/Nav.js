@@ -23,16 +23,19 @@ function Nav(props) {
     ));
 
   return (
-    <div>
-      <div className={pos}>
-        <ul className="nav container-content">
-          {list}
-          <li className="plus-nav" onClick={() => setHide(!hide)}>
-            Plus +
-          </li>
-        </ul>
+    <div className={pos}>
+      <div className="container-content">
+        <div className="nav-wrapper ">
+          <ul className="nav">{list}</ul>{" "}
+          <div className="plus-nav">
+            <div className="plus" onClick={() => setHide(!hide)}>
+              Plus <i className="fas fa-chevron-down" />
+            </div>{" "}
+            <ul className={hide ? "vertical-nav" : ""}> {hide && bList}</ul>{" "}
+          </div>
+        </div>
+        <div />
       </div>
-      <ul className={hide ? "vertical-nav" : ""}> {hide && bList}</ul>
     </div>
   );
 }

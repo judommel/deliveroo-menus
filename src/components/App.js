@@ -27,7 +27,9 @@ class App extends React.Component {
 
     newCart.splice(index, 1, item);
 
-    this.setState({ cart: newCart });
+    let nextCart = newCart.filter(item => item.quantity > 0);
+
+    this.setState({ cart: nextCart });
   };
 
   del = e => {
@@ -42,7 +44,9 @@ class App extends React.Component {
 
     newCart.splice(index, 1, item);
 
-    this.setState({ cart: newCart });
+    let nextCart = newCart.filter(item => item.quantity > 0);
+
+    this.setState({ cart: nextCart });
   };
 
   selectItem = e => {
@@ -80,15 +84,9 @@ class App extends React.Component {
       newCart.push(item);
     }
 
-    this.setState({ cart: newCart });
-  };
+    let nextCart = newCart.filter(item => item.quantity > 0);
 
-  handleScroll = e => {
-    if (window.scrollY > 292) {
-      this.setState({ scrolled: true });
-    } else {
-      this.setState({ scrolled: false });
-    }
+    this.setState({ cart: nextCart });
   };
 
   render() {
@@ -110,10 +108,24 @@ class App extends React.Component {
             description={this.state.data.restaurant.description}
             pic={this.state.data.restaurant.picture}
           />
-          <Nav
-            pos={this.state.scrolled ? "fixedNav" : "container-nav"}
-            mealList={this.state.data.menu}
-          />
+          <div className="container-nav">
+            <div className="nav-flex">
+              <Nav pos="container-nav" mealList={this.state.data.menu} />
+              <div className="cart-wrapper">
+                <Cart
+                  add={e => this.add(e)}
+                  del={e => this.del(e)}
+                  cart={this.state.cart}
+                  pos="cart"
+                  cartbutton={
+                    this.state.cart.length === 0
+                      ? "empty-cart-button"
+                      : "cart-button"
+                  }
+                />
+              </div>
+            </div>
+          </div>
           <div className="main">
             <div>
               <Content
@@ -122,14 +134,6 @@ class App extends React.Component {
                 onSelect={e => {
                   this.selectItem(e);
                 }}
-              />
-            </div>
-            <div className="cart-wrapper">
-              <Cart
-                add={e => this.add(e)}
-                del={e => this.del(e)}
-                cart={this.state.cart}
-                pos={this.state.scrolled ? "fixedCart" : "cart"}
               />
             </div>
           </div>
@@ -142,7 +146,6 @@ class App extends React.Component {
     await axios.get("https://deliveroo-api.now.sh/menu").then(response => {
       this.setState({ data: response.data, isLoading: false });
     });
-    window.addEventListener("scroll", this.handleScroll);
   }
 }
 
